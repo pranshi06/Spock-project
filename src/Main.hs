@@ -30,30 +30,11 @@ data Note = Note {
 
 type Server a = SpockM () () ServerState a
 
-param' :: forall p (m :: * -> *) ctx.
-  (FromHttpApiData p, MonadIO m)
-  => Text
-  -> ActionCtxT ctx m p
+-- param' :: forall p (m :: * -> *) ctx.
+--   (FromHttpApiData p, MonadIO m)
+--   => Text
+--   -> ActionCtxT ctx m p
 
--- app :: Server ()
--- app = do 
---     get root $ do
---         notes' <- getState >>= (liftIO . readIORef . notes)
---         lucid $ do
---             h1_ "Notes"
---             ul_ $ forM_ notes' $ \note -> li_ $ do
---                 toHtml (author note)
---                 ": "
---                 toHtml (contents note)
---     post root $ do
---         author <- param' "author"
---         contents <- param' "contents"
---         notesRef <- notes <$> getState
---         liftIO $ atomicModifyIORef' notesRef $ \notes ->
---             (notes <> [Note author contents], ())
---         redirect "/"
-
--- ----------------------- Rendering a Form----------------
 app :: Server ()
 app = do 
     get root $ do
@@ -126,7 +107,8 @@ main = do
 
 
 
--- -------------- Show notes -----------------
+-- --------------------------- Show notes -----------------------------
+
 -- app :: SpockM () () () ()
 -- app = return ()
 
