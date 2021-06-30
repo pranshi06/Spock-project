@@ -93,8 +93,6 @@ param' :: forall p (m :: * -> *) ctx.
   => Text
   -> ActionCtxT ctx m p
 
-atomicModifyIORef' :: IORef a -> (a -> (a,b)) -> IO b
-
 app :: Server ()
 app = do 
     get root $ do
